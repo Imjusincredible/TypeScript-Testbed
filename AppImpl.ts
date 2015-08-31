@@ -1,5 +1,5 @@
-import Person = require("./PersonImpl");
-import Greeting = require("./GreetingImpl");
+import Person = require("./App/PersonImpl");
+import Greeting = require("./App/GreetingImpl");
 
 /** Setup */
 var person = new Person({
