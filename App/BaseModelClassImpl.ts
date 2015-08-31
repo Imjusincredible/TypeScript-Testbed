@@ -10,12 +10,11 @@ import BaseClass = require("./BaseClassImpl");
  * Base Model Class - Great for storing Domain Objects
  */
 class BaseModelClassImpl extends BaseClass {
-	public model: any;
-	private version: number;
+	private model: any;
+	private version: number = 0;
 
 	constructor(model?: any) {
 		super();
-		this.version = 0;
 
 		if (!model)
 			return;

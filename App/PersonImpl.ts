@@ -8,13 +8,17 @@ import BaseModelClass = require("./BaseModelClassImpl");
 import IPersonModel = require("./IPersonModel");
 
 /**
- * @Class
+ * @Class - Domain Model
  * Person
  */
 class PersonImpl extends BaseModelClass {
-	model: any;
+	constructor(person?: IPersonModel) {
+		// Create an Empty Object based on the Interface
+		if (!person) {
+			super(<IPersonModel>{});
+			return;
+		}
 
-	constructor(person: IPersonModel) {
 		super(person);
 	}
 
