@@ -11,23 +11,23 @@ import ICommonObject = require("./ICommonObject");
  * BaseClass
  */
 class BaseClassImpl implements ICommonObject {
-	constructor() {}
+    constructor() {}
 
-	has(key: string): boolean {
-		return (this.hasOwnProperty(key));
-	}
+    has(key: string): boolean {
+        return (this.hasOwnProperty(key));
+    }
 
-	get(key: string): any {
-		if (this.has(key)) return this[key];
-		else return null;
-	}
+    get(key: string): any {
+        if (this.has(key)) return this[key];
+        else return null;
+    }
 
-	set(key: string, val: any): boolean {
-		if (!this.has(key)) return false;
+    set(key: string, val: any): boolean {
+        if (!this.has(key)) return false;
 
-		this[key] = val;
-		return true;
-	}
+        this[key] = val;
+        return true;
+    }
 }
 
 export = BaseClassImpl;

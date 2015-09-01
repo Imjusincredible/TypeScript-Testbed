@@ -9,10 +9,10 @@
  * IPerson
  */
 interface IPersonModel {
-	firstName: string;
-	lastName: string;
-	image: string;
-	age: number;
+    firstName: string;
+    lastName: string;
+    image: string;
+    age: number;
 }
 
 export = IPersonModel;

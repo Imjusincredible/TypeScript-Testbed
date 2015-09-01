@@ -11,15 +11,17 @@ import Person = require("./PersonImpl");
  * Greeting
  */
 class Greeting {
-	message: string;
-	person: Person;
-	constructor(person: Person) {
-		this.person = person;
-	}
+    message: string;
+    person: Person;
+    constructor(person: Person) {
+        this.person = person;
+    }
 
-	greet() {
-		return 'Hi, my name is ' + this.person.get('firstName') + ' ' + this.person.get('lastName');
-	}
+    greet() {
+        return !this.person.isNew()
+            ? 'Hi, my name is ' + this.person.get('firstName') + ' ' + this.person.get('lastName')
+            : 'This is a new Person, we need to get them registered...STAT!!!';
+    }
 }
 
 export = Greeting;

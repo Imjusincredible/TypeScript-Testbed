@@ -11,9 +11,9 @@ import ICommonObject = require("./ICommonObject");
  * <I>Common Object
  */
 interface ICommonDomainObject extends ICommonObject {
-	isNew(key?: any): boolean;
-	save(): boolean;
-	serialize(key: string): any;
+    isNew(key?: any): boolean;
+    save(): boolean;
+    serialize(key: string): any;
 }
 
 export = ICommonDomainObject;

@@ -10,60 +10,60 @@ import ICommonDomainObject = require("./ICommonDomainObject");
  * Base Model Class - Great for storing Domain Objects
  */
 class BaseModelClassImpl implements ICommonDomainObject {
-	private model: any;
-	private version: number = 0;
+    private model: any;
+    private version: number = 0;
 
-	constructor(model?: any) {
-		if (!model)
-			return;
+    constructor(model?: any) {
+        if (!model)
+            return;
 
-		this.model = model;
-		this.versionUpdate();
-	}
+        this.model = model;
+        this.versionUpdate();
+    }
 
-	has(key: string) {
-		return this.model.hasOwnProperty(key);
-	}
+    has(key: string) {
+        return this.model.hasOwnProperty(key);
+    }
 
-	isNew(key?: any) {
-		if (key && this.get(key.toString()))
-			return false;
-		else if (this.has('id'))
-			return this.get('id') !== null;
+    isNew(key?: any) {
+        if (key && this.get(key.toString()))
+            return false;
+        else if (this.has('id'))
+            return this.get('id') !== null;
 
-		return true;
-	}
+        return true;
+    }
 
-	get(key: string) {
-		if (this.has(key)) return this.model[key];
-		else return null;
-	}
+    get(key: string) {
+        if (this.has(key)) return this.model[key];
+        else return null;
+    }
 
-	getVersion() {
-		return this.version;
-	}
+    getVersion() {
+        return this.version;
+    }
 
-	/**
-	 * Stub for consumer to Implement
-	 */
-	save() { return false; }
+    /**
+     * Stub for consumer to Implement
+     */
+    save() { return false; }
 
-	set(key: string, val: any) {
-		if (!this.has(key)) return false;
+    set(key: string, val: any) {
+        if (!this.has(key)) return false;
 
-		this.model[key] = val;
-		this.versionUpdate();
+        this.model[key] = val;
+        this.versionUpdate();
 
-		return true;
-	}
+        return true;
+    }
 
-	serialize() {
-		return this.model;
-	}
+    serialize() {
+        return this.model;
+    }
 
-	private versionUpdate() {
-		this.version += 1;
-	}
+    private versionUpdate() {
+        this.version += 1;
+    }
 }
 
 export = BaseModelClassImpl;

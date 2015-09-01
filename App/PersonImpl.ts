@@ -12,20 +12,32 @@ import IPersonModel = require("./IPersonModel");
  * Person
  */
 class PersonImpl extends BaseModelClass {
-	constructor(person?: IPersonModel) {
-		// Create an Empty Object based on the Interface
-		if (!person) {
-			super(<IPersonModel>{});
-			return;
-		}
+    constructor(person?: IPersonModel) {
+        // Create an Empty Object based on the Interface
+        if (!person) {
+            super(<IPersonModel>{});
+            return;
+        }
 
-		super(person);
-	}
+        super(person);
+    }
 
-	serialize() {
-		return 'Serializing the model ' + this.get('firstName') +
-		' ' + this.get('lastName') + ' @ v:' + this.getVersion();
-	}
+    /**
+     * @override
+     * Determine if a person is a newly established object based on firstName
+     */
+    isNew() {
+        return super.isNew('firstName');
+    }
+
+    /**
+     * @override
+     * Lets just return a message for now
+     */
+    serialize() {
+        return 'Serializing the model ' + this.get('firstName') +
+        ' ' + this.get('lastName') + ' @ v:' + this.getVersion();
+    }
 }
 
 export = PersonImpl;

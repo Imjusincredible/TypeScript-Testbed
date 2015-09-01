@@ -9,9 +9,9 @@
  * <I>Common Object
  */
 interface ICommonObject {
-	get(key: string): any;
-	has(key: string): boolean;
-	set(key: string, val: any): boolean;
+    get(key: string): any;
+    has(key: string): boolean;
+    set(key: string, val: any): boolean;
 }
 
 export = ICommonObject;
