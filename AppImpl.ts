@@ -4,6 +4,8 @@
  * Written by Charles Johnson, II - August 2015
  */
 
+import AppMode = require("./App/AppMode");
+import BaseClass = require("./App/BaseClassImpl");
 import Person = require("./App/PersonImpl");
 import Greeting = require("./App/GreetingImpl");
 
@@ -11,9 +13,15 @@ import Greeting = require("./App/GreetingImpl");
  * @Class
  * ApplImpl
  */
-class AppImpl {
+class AppImpl extends BaseClass {
+    mode: AppMode = AppMode.DEMO;
+
     // public methods in the constructor auto-populates the class properties
-    constructor(public person: Person, public greetings: Greeting) {}
+    constructor(public person: Person, public greetings: Greeting, mode?: AppMode) {
+        super();
+
+        if (mode) this.set('mode', mode);
+    }
 
     updatePerson(k?: string, v?: string): string {
         if (k) this.person.set(k, v);
@@ -22,9 +30,27 @@ class AppImpl {
     }
 
     viewPerson(): string {
-        var message = this.greetings.greet() + ' - ' + this.person.serialize();
+        var message = this.greetings.greet();
         console.log(message);
         return message;
+    }
+
+    getMode(): string {
+        return AppMode[this.mode];
+    }
+
+    /**
+     * @override
+     * Setter for the class
+     * @param  {string}  key
+     * @param  {any}     val
+     * @return {boolean}
+     */
+    set(key: string, val: any): boolean {
+        if (key === 'mode' && val !== this.mode)
+            console.log('Application Mode Changed from ' + this.getMode() + ' to ' + AppMode[val]);
+
+        return super.set(key, val);
     }
 }
 
@@ -47,3 +73,7 @@ var App = new AppImpl(charles, greetMe);
 App.viewPerson();
 App.updatePerson('lastName', 'Johnson II');
 App.updatePerson('firstName', 'CE');
+
+console.log('\n');
+App.set('mode', AppMode.PRODUCTION);
+console.log('Raw value stored in App.mode: ' + App.get('mode'));    // inherited method

@@ -18,7 +18,7 @@ class Greeting {
 
     greet() {
         return !this.person.isNew()
-            ? 'Hi, my name is ' + this.person.get('firstName') + ' ' + this.person.get('lastName')
+            ? this.person.serialize()
             : 'This is a new Person, we need to get them registered...STAT!!!';
     }
 }
