@@ -11,8 +11,7 @@ import Person = require("./PersonImpl");
  * Greeting
  */
 class Greeting {
-    message: string;
-    person: Person;
+    private person: Person;
     constructor(person: Person) {
         this.person = person;
     }

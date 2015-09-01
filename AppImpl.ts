@@ -7,26 +7,43 @@
 import Person = require("./App/PersonImpl");
 import Greeting = require("./App/GreetingImpl");
 
-/** Setup */
-var person = new Person({
+/**
+ * @Class
+ * ApplImpl
+ */
+class AppImpl {
+    // public methods in the constructor auto-populates the class properties
+    constructor(public person: Person, public greetings: Greeting) {}
+
+    updatePerson(k?: string, v?: string): string {
+        if (k) this.person.set(k, v);
+
+        return this.viewPerson();
+    }
+
+    viewPerson(): string {
+        var message = this.greetings.greet() + ' - ' + this.person.serialize();
+        console.log(message);
+        return message;
+    }
+}
+
+/**
+ * Setup
+ */
+var charles = new Person({
     firstName: 'Charles',
     lastName: 'Johnson',
     age: 32,
     image: 'http://www.sockittome.com/mypic.png'
 });
+var greetMe = new Greeting(charles);
 
-var greetings = new Greeting(person);
-
-// Setup Method
-function personUpdate(k?, v?) {
-    if (k) person.set(k, v);
-
-    return console.log(greetings.greet() + ' - ' + person.serialize());
-}
+// Initialize App
+var App = new AppImpl(charles, greetMe);
 
 
 /** Echo */
-personUpdate();
-personUpdate('lastName', 'Johnson II');
-personUpdate('firstName', 'CE');
-console.log('\n');
+App.viewPerson();
+App.updatePerson('lastName', 'Johnson II');
+App.updatePerson('firstName', 'CE');
